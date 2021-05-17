@@ -11,6 +11,10 @@ public class HdrLightEstimation : MonoBehaviour
     [Tooltip("The ARCameraManager which will produce frame events containing light estimation information.")]
     private ARCameraManager _cameraManager;
 
+    /// <summary>
+    /// Reference to the main directional light of the scene.
+    /// It is assumed that this script is placed on the main directional light GameObject.
+    /// </summary>
     private Light _light;
 
 
