@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "99091FFAZ00A15",
         "name": "com.AndreasJakl.ArFoundationDemo",
-        "processId": 28020,
+        "processId": 24833,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -42,6 +42,12 @@
             "deviceId": "99091FFAZ00A15",
             "name": "com.AndreasJakl.ArFoundationDemo",
             "processId": 28020,
+            "exited": false
+        },
+        {
+            "deviceId": "99091FFAZ00A15",
+            "name": "com.AndreasJakl.ArFoundationDemo",
+            "processId": 24833,
             "exited": false
         },
         {
