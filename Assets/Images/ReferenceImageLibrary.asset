@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GuidLow: 5016710227190297351
   m_GuidHigh: 9495299798846989469
+  m_DataStore:
+    m_Storage: []
   m_Images:
   - m_SerializedGuid:
       m_GuidLow: 5212623279148992020
