@@ -71,12 +71,23 @@ public class ARPlaceTrackedImages : MonoBehaviour
                 .SetActive(trackedImage.trackingState == TrackingState.Tracking);
         }
 
-        // Also disable instantiated prefabs if they have been removed.
-        // ARCore doesn't seem to remove these at all; if it does, it would delete our child GameObject
-        // as well. So we don't really need to do so here.
+        // Remove is called if the subsystem has given up looking for the trackable again.
+        // (If it's invisible, its tracking state would just go to limited initially).
+        // Note: ARCore doesn't seem to remove these at all; if it does, it would delete our child GameObject
+        // as well.
         foreach (var trackedImage in eventArgs.removed)
         {
-            _instantiatedPrefabs[trackedImage.referenceImage.name].SetActive(false);
+            // Destroy the instance in the scene.
+            // Note: this code does not delete the ARTrackedImage parent, which was created
+            // by AR Foundation, is managed by it and should therefore also be deleted
+            // by AR Foundation.
+            Destroy(_instantiatedPrefabs[trackedImage.referenceImage.name]);
+            // Also remove the instance from our array
+            _instantiatedPrefabs.Remove(trackedImage.referenceImage.name);
+
+            // Alternative: do not destroy the instance, just set it inactive
+            //_instantiatedPrefabs[trackedImage.referenceImage.name].SetActive(false);
+
             Log.text = $"REMOVED (guid: {trackedImage.referenceImage.guid}).";
         }
     }
