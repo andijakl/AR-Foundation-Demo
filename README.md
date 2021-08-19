@@ -7,6 +7,7 @@ Finished source code for the blog article introducing the concepts behind AR Fou
 * [Part 1: AR Foundation Fundamentals with Unity](https://www.andreasjakl.com/ar-foundation-fundamentals-with-unity-part-1/)
 * [Part 2: Trackables and Managers in AR Foundation](https://www.andreasjakl.com/trackables-and-managers-in-ar-foundation-part-2/)
 * [Part 3: Raycast & Anchor: Placing AR Foundation Holograms](https://www.andreasjakl.com/raycast-anchor-placing-ar-foundation-holograms-part-3/)
+* [Part 4: 2D Image Tracking with AR Foundation Holograms](https://www.andreasjakl.com/2d-image-tracking-with-ar-foundation-part-4/)
 
 ## Example Videos
 
