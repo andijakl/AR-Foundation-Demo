@@ -1,9 +1,9 @@
 {
-    "m_SelectedDeviceId": "99091FFAZ00A15",
+    "m_SelectedDeviceId": "19171FDF60025K",
     "m_SelectedPackage": {
-        "deviceId": "99091FFAZ00A15",
+        "deviceId": "19171FDF60025K",
         "name": "com.AndreasJakl.ArFoundationDemo",
-        "processId": 10955,
+        "processId": 1536,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -73,6 +73,12 @@
             "name": "com.AndreasJakl.ArDemoARCompanion",
             "processId": 31309,
             "exited": true
+        },
+        {
+            "deviceId": "19171FDF60025K",
+            "name": "com.AndreasJakl.ArFoundationDemo",
+            "processId": 1536,
+            "exited": false
         }
     ],
     "m_Tags": {

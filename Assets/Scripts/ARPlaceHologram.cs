@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
+using UnityEngine.InputSystem.EnhancedTouch;
+using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 
 public class ARPlaceHologram : MonoBehaviour
 {
@@ -18,25 +20,38 @@ public class ARPlaceHologram : MonoBehaviour
     private ARAnchorManager _anchorManager;
 
     // List for raycast hits is re-used by raycast manager
-    private static readonly List<ARRaycastHit> Hits = new List<ARRaycastHit>();
+    private static readonly List<ARRaycastHit> Hits = new();
 
     // Reference to logging UI element in the canvas
     public UnityEngine.UI.Text Log;
 
-    void Awake()
+    protected void OnEnable()
+    {
+        EnhancedTouchSupport.Enable();
+    }
+
+    protected void OnDisable()
+    {
+        EnhancedTouchSupport.Disable();
+    }
+
+    protected void Awake()
     {
         _raycastManager = GetComponent<ARRaycastManager>();
         _anchorManager = GetComponent<ARAnchorManager>();
     }
     
-    void Update()
+    protected void Update()
     {
         // Only consider single-finger touches that are beginning
-        Touch touch; 
-        if (Input.touchCount < 1 || (touch = Input.GetTouch(0)).phase != TouchPhase.Began) { return; }
-        
+        var activeTouches = UnityEngine.InputSystem.EnhancedTouch.Touch.activeTouches;
+        if (activeTouches.Count < 1 || activeTouches[0].phase != TouchPhase.Began)
+        {
+            return;
+        }
+
         // Perform AR raycast to any kind of trackable
-        if (_raycastManager.Raycast(touch.position, Hits, TrackableType.All))
+        if (_raycastManager.Raycast(activeTouches[0].screenPosition, Hits, TrackableType.AllTypes))
         {
             // Raycast hits are sorted by distance, so the first one will be the closest hit.
             var hitPose = Hits[0].pose;
@@ -53,7 +68,7 @@ public class ARPlaceHologram : MonoBehaviour
     }
 
 
-    ARAnchor CreateAnchor(in ARRaycastHit hit)
+    private ARAnchor CreateAnchor(in ARRaycastHit hit)
     {
         ARAnchor anchor;
 
