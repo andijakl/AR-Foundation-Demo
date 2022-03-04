@@ -5,6 +5,9 @@ using UnityEngine.XR.ARSubsystems;
 using UnityEngine.InputSystem.EnhancedTouch;
 using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 
+[RequireComponent(typeof(ARAnchorManager))]
+[RequireComponent(typeof(ARRaycastManager))]
+[RequireComponent(typeof(ARPlaneManager))]
 public class ARPlaceHologram : MonoBehaviour
 {
     /// <summary>
@@ -13,11 +16,14 @@ public class ARPlaceHologram : MonoBehaviour
     [SerializeField]
     private GameObject _prefabToPlace;
 
-    // Cache ARRaycastManager GameObject from ARCoreSession
+    // Cache ARRaycastManager GameObject from XROrigin
     private ARRaycastManager _raycastManager;
 
-    // Cache ARAnchorManager GameObject from ARCoreSession
+    // Cache ARAnchorManager GameObject from XROrigin
     private ARAnchorManager _anchorManager;
+
+    // Cache ARAnchorManager GameObject from XROrigin
+    //private ARPlaneManager _planeManager;
 
     // List for raycast hits is re-used by raycast manager
     private static readonly List<ARRaycastHit> Hits = new();
@@ -39,6 +45,7 @@ public class ARPlaceHologram : MonoBehaviour
     {
         _raycastManager = GetComponent<ARRaycastManager>();
         _anchorManager = GetComponent<ARAnchorManager>();
+        //_planeManager = GetComponent<ARPlaneManager>();
     }
     
     protected void Update()
@@ -50,15 +57,24 @@ public class ARPlaceHologram : MonoBehaviour
             return;
         }
 
+        // Raycast against planes and feature points
+        const TrackableType trackableTypes =
+            TrackableType.FeaturePoint |
+            TrackableType.PlaneWithinPolygon;
+
         // Perform AR raycast to any kind of trackable
-        if (_raycastManager.Raycast(activeTouches[0].screenPosition, Hits, TrackableType.AllTypes))
+        if (_raycastManager.Raycast(activeTouches[0].screenPosition, Hits, trackableTypes))
         {
             // Raycast hits are sorted by distance, so the first one will be the closest hit.
-            var hitPose = Hits[0].pose;
+            //var hitPose = Hits[0].pose;
 
-            // Instantiate the prefab at the given position
-            // Note: the object is not anchored yet!
+            // Note: simply instantiating the prefab at the given position
+            // wouldn't anchor it. Over time, it wouldn't stay in place
+            // in the real world.
             //Instantiate(_prefabToPlace, hitPose.position, hitPose.rotation);
+
+            // Therefore: create an anchor so that the object stays
+            // in place in the real world.
             CreateAnchor(Hits[0]);
 
             // Debug output what we actually hit
@@ -67,42 +83,65 @@ public class ARPlaceHologram : MonoBehaviour
         }
     }
 
-
+    
     private ARAnchor CreateAnchor(in ARRaycastHit hit)
     {
         ARAnchor anchor;
 
-        // ... here, we'll place the plane anchoring code!
+        // Get the trackable ID in case the raycast hit a trackable
+        //var hitTrackableId = hit.trackableId;
 
-        // If we hit a plane, try to "attach" the anchor to the plane
-        if (hit.trackable is ARPlane plane)
+        // Attempt to retrieve a plane if the trackable is of type plane
+        // and the the raycast hit one
+        //var hitPlane = _planeManager.GetPlane(hitTrackableId);
+
+        if (hit.trackable is ARPlane hitPlane)
         {
-            var planeManager = GetComponent<ARPlaneManager>();
-            if (planeManager)
+            // The raycast hit a plane - therefore, attach the anchor to the plane.
+            // According to the AR Foundation documentation:
+            // Attaching an anchor to a plane affects the anchor update semantics.
+            // This type of anchor only changes its position along the normal of
+            // the plane to which it is attached,
+            // thus maintaining a constant distance from the plane.
+
+            // When the Anchor Manager has a prefab assigned to its property,
+            // it will instantiate that and automatically make it a child
+            // of an anchor GameObject.
+            // The following code temporarily replaces the default prefab
+            // with the one we want to instantiate from our script, to ensure
+            // it doesn't interfere with potential other logic in your app.
+            var oldPrefab = _anchorManager.anchorPrefab;
+            _anchorManager.anchorPrefab = _prefabToPlace;
+            anchor = _anchorManager.AttachAnchor(hitPlane, hit.pose);
+            _anchorManager.anchorPrefab = oldPrefab;
+
+            // Note: the following method seems to produce an offset when placing
+            // the prefab instance in AR Foundation 5.0 pre 8
+            //anchor = _anchorManager.AttachAnchor(hitPlane, hit.pose);
+            // Make our prefab a child of the anchor, so that it's moved
+            // with that anchor.
+            //Instantiate(_prefabToPlace, anchor.transform);
+
+            Debug.Log($"Created anchor attachment for plane (id: {anchor.nativePtr}).");
+        }
+        else
+        {
+            // Otherwise, just create a regular anchor at the hit pose
+            // Note: the anchor can be anywhere in the scene hierarchy
+            var instantiatedObject = Instantiate(_prefabToPlace, hit.pose.position, hit.pose.rotation);
+
+            // Make sure the new GameObject has an ARAnchor component.
+            if (!instantiatedObject.TryGetComponent<ARAnchor>(out anchor))
             {
-                var oldPrefab = _anchorManager.anchorPrefab;
-                _anchorManager.anchorPrefab = _prefabToPlace;
-                anchor = _anchorManager.AttachAnchor(plane, hit.pose);
-                _anchorManager.anchorPrefab = oldPrefab;
-                Debug.Log($"Created anchor attachment for plane (id: {anchor.nativePtr}).");
-                //Log.text = $"Created anchor attachment for plane (id: {anchor.nativePtr}).";
-                return anchor;
+                // If the prefab doesn't include the ARAnchor component,
+                // simply add it.
+                // Note: ARAnchorManager.AddAnchor() is obsolete, this
+                // is the way to go! ARAnchor will add itself to the
+                // anchor manager once it is enabled.
+                anchor = instantiatedObject.AddComponent<ARAnchor>();
             }
+            Debug.Log($"Created regular anchor (id: {anchor.nativePtr}).");
         }
-
-        // Otherwise, just create a regular anchor at the hit pose
-
-        // Note: the anchor can be anywhere in the scene hierarchy
-        var instantiatedObject = Instantiate(_prefabToPlace, hit.pose.position, hit.pose.rotation);
-
-        // Make sure the new GameObject has an ARAnchor component
-        anchor = instantiatedObject.GetComponent<ARAnchor>();
-        if (anchor == null)
-        {
-            anchor = instantiatedObject.AddComponent<ARAnchor>();
-        }
-        Debug.Log($"Created regular anchor (id: {anchor.nativePtr}).");
-        //Log.text = $"Created regular anchor (id: {anchor.nativePtr}).";
 
         return anchor;
     }

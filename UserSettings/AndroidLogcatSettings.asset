@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "19171FDF60025K",
         "name": "com.AndreasJakl.ArFoundationDemo",
-        "processId": 1536,
+        "processId": 20606,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -78,6 +78,42 @@
             "deviceId": "19171FDF60025K",
             "name": "com.AndreasJakl.ArFoundationDemo",
             "processId": 1536,
+            "exited": true
+        },
+        {
+            "deviceId": "19171FDF60025K",
+            "name": "com.AndreasJakl.ArFoundationDemo",
+            "processId": 29706,
+            "exited": true
+        },
+        {
+            "deviceId": "19171FDF60025K",
+            "name": "com.AndreasJakl.ArFoundationDemo",
+            "processId": 32022,
+            "exited": true
+        },
+        {
+            "deviceId": "19171FDF60025K",
+            "name": "com.AndreasJakl.ArFoundationDemo",
+            "processId": 24449,
+            "exited": true
+        },
+        {
+            "deviceId": "19171FDF60025K",
+            "name": "com.AndreasJakl.ArFoundationDemo",
+            "processId": 26819,
+            "exited": true
+        },
+        {
+            "deviceId": "19171FDF60025K",
+            "name": "com.AndreasJakl.ArFoundationDemo",
+            "processId": 27547,
+            "exited": false
+        },
+        {
+            "deviceId": "19171FDF60025K",
+            "name": "com.AndreasJakl.ArFoundationDemo",
+            "processId": 20606,
             "exited": false
         }
     ],
