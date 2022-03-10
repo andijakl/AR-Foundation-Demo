@@ -1,10 +1,10 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
+[RequireComponent(typeof(ARTrackedImageManager))]
 public class ARPlaceTrackedImages : MonoBehaviour
 {
     // Cache AR tracked images manager from ARCoreSession
@@ -14,7 +14,7 @@ public class ARPlaceTrackedImages : MonoBehaviour
     public GameObject[] ArPrefabs;
 
     // Internal storage of created prefabs for easier updating
-    private readonly Dictionary<string, GameObject> _instantiatedPrefabs = new Dictionary<string, GameObject>();
+    private readonly Dictionary<string, GameObject> _instantiatedPrefabs = new();
 
     // Reference to logging UI element in the canvas
     public UnityEngine.UI.Text Log;
@@ -99,21 +99,17 @@ public class ARPlaceTrackedImages : MonoBehaviour
     private static void ShowAndroidToastMessage(string message)
     {
 #if UNITY_ANDROID
-        using (var unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+        using var unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+        var unityActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+        if (unityActivity == null) return;
+        var toastClass = new AndroidJavaClass("android.widget.Toast");
+        unityActivity.Call("runOnUiThread", new AndroidJavaRunnable(() =>
         {
-            var unityActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
-            if (unityActivity == null) return;
-            var toastClass = new AndroidJavaClass("android.widget.Toast");
-            unityActivity.Call("runOnUiThread", new AndroidJavaRunnable(() =>
-            {
-                // Last parameter = length. Toast.LENGTH_LONG = 1
-                using (var toastObject = toastClass.CallStatic<AndroidJavaObject>("makeText",
-                    unityActivity, message, 1))
-                {
-                    toastObject.Call("show");
-                }
-            }));
-        }
+            // Last parameter = length. Toast.LENGTH_LONG = 1
+            using var toastObject = toastClass.CallStatic<AndroidJavaObject>("makeText",
+                unityActivity, message, 1);
+            toastObject.Call("show");
+        }));
 #endif
     }
 
