@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "19171FDF60025K",
         "name": "com.AndreasJakl.ArFoundationDemo",
-        "processId": 20606,
+        "processId": 16952,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -114,6 +114,12 @@
             "deviceId": "19171FDF60025K",
             "name": "com.AndreasJakl.ArFoundationDemo",
             "processId": 20606,
+            "exited": false
+        },
+        {
+            "deviceId": "19171FDF60025K",
+            "name": "com.AndreasJakl.ArFoundationDemo",
+            "processId": 16952,
             "exited": false
         }
     ],
