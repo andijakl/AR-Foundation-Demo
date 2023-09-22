@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "19171FDF60025K",
         "name": "com.AndreasJakl.ArFoundationDemo",
-        "processId": 31381,
+        "processId": 22354,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -126,6 +126,18 @@
             "deviceId": "19171FDF60025K",
             "name": "com.AndreasJakl.ArFoundationDemo",
             "processId": 31381,
+            "exited": false
+        },
+        {
+            "deviceId": "19171FDF60025K",
+            "name": "com.AndreasJakl.ArFoundationDemo",
+            "processId": 30638,
+            "exited": false
+        },
+        {
+            "deviceId": "19171FDF60025K",
+            "name": "com.AndreasJakl.ArFoundationDemo",
+            "processId": 22354,
             "exited": false
         }
     ],
