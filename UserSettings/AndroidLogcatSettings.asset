@@ -1,143 +1,17 @@
 {
-    "m_SelectedDeviceId": "19171FDF60025K",
-    "m_SelectedPackage": {
-        "deviceId": "19171FDF60025K",
+    "m_SelectedDeviceId": "38091FDJH00NZD",
+    "m_SelectedProcess": {
+        "deviceId": "38091FDJH00NZD",
         "name": "com.AndreasJakl.ArFoundationDemo",
-        "processId": 22354,
+        "processId": 8494,
         "exited": false
     },
     "m_SelectedPriority": 0,
-    "m_KnownPackagesForSerialization": [
+    "m_KnownProcessesForSerialization": [
         {
-            "deviceId": "99091FFAZ00A15",
-            "name": "com.AndreasJakl.ArDemo",
-            "processId": 32333,
-            "exited": true
-        },
-        {
-            "deviceId": "99091FFAZ00A15",
-            "name": "com.AndreasJakl.ArDemo",
-            "processId": 15140,
-            "exited": true
-        },
-        {
-            "deviceId": "99091FFAZ00A15",
-            "name": "com.AndreasJakl.ArDemo",
-            "processId": 28688,
-            "exited": true
-        },
-        {
-            "deviceId": "99091FFAZ00A15",
-            "name": "com.AndreasJakl.ArDemoARCompanion",
-            "processId": 6432,
-            "exited": false
-        },
-        {
-            "deviceId": "99091FFAZ00A15",
-            "name": "com.AndreasJakl.ArDemo",
-            "processId": 6732,
-            "exited": false
-        },
-        {
-            "deviceId": "99091FFAZ00A15",
+            "deviceId": "38091FDJH00NZD",
             "name": "com.AndreasJakl.ArFoundationDemo",
-            "processId": 28020,
-            "exited": false
-        },
-        {
-            "deviceId": "99091FFAZ00A15",
-            "name": "com.AndreasJakl.ArFoundationDemo",
-            "processId": 24833,
-            "exited": false
-        },
-        {
-            "deviceId": "99091FFAZ00A15",
-            "name": "com.AndreasJakl.ArFoundationDemo",
-            "processId": 22432,
-            "exited": false
-        },
-        {
-            "deviceId": "99091FFAZ00A15",
-            "name": "com.AndreasJakl.ArFoundationDemo",
-            "processId": 2551,
-            "exited": false
-        },
-        {
-            "deviceId": "99091FFAZ00A15",
-            "name": "com.AndreasJakl.ArFoundationDemo",
-            "processId": 10955,
-            "exited": false
-        },
-        {
-            "deviceId": "a4077af4",
-            "name": "com.AndreasJakl.ArDemoARCompanion",
-            "processId": 31309,
-            "exited": true
-        },
-        {
-            "deviceId": "19171FDF60025K",
-            "name": "com.AndreasJakl.ArFoundationDemo",
-            "processId": 1536,
-            "exited": true
-        },
-        {
-            "deviceId": "19171FDF60025K",
-            "name": "com.AndreasJakl.ArFoundationDemo",
-            "processId": 29706,
-            "exited": true
-        },
-        {
-            "deviceId": "19171FDF60025K",
-            "name": "com.AndreasJakl.ArFoundationDemo",
-            "processId": 32022,
-            "exited": true
-        },
-        {
-            "deviceId": "19171FDF60025K",
-            "name": "com.AndreasJakl.ArFoundationDemo",
-            "processId": 24449,
-            "exited": true
-        },
-        {
-            "deviceId": "19171FDF60025K",
-            "name": "com.AndreasJakl.ArFoundationDemo",
-            "processId": 26819,
-            "exited": true
-        },
-        {
-            "deviceId": "19171FDF60025K",
-            "name": "com.AndreasJakl.ArFoundationDemo",
-            "processId": 27547,
-            "exited": false
-        },
-        {
-            "deviceId": "19171FDF60025K",
-            "name": "com.AndreasJakl.ArFoundationDemo",
-            "processId": 20606,
-            "exited": false
-        },
-        {
-            "deviceId": "19171FDF60025K",
-            "name": "com.AndreasJakl.ArFoundationDemo",
-            "processId": 16952,
-            "exited": false
-        },
-        {
-            "deviceId": "19171FDF60025K",
-            "name": "com.AndreasJakl.ArFoundationDemo",
-            "processId": 31381,
-            "exited": false
-        },
-        {
-            "deviceId": "19171FDF60025K",
-            "name": "com.AndreasJakl.ArFoundationDemo",
-            "processId": 30638,
-            "exited": false
-        },
-        {
-            "deviceId": "19171FDF60025K",
-            "name": "com.AndreasJakl.ArFoundationDemo",
-            "processId": 22354,
+            "processId": 8494,
             "exited": false
         }
     ],
@@ -173,8 +47,11 @@
             }
         ]
     },
+    "m_ExtraWindowState": {
+        "Type": 0,
+        "Height": 0.0
+    },
     "m_MemoryViewerState": {
-        "MemoryWindowHeight": 300.0,
         "MemoryWindowWidth": 170.0,
         "MemoryTypeEnabled": [
             true,
@@ -189,7 +66,7 @@
             true
         ],
         "MemoryGroup": 2,
-        "Behavior": 0
+        "AutoCapture": true
     },
     "m_FilterOptions": {
         "m_Filter": "",
@@ -207,5 +84,17 @@
         "BitRateK": 20000,
         "DisplayIdEnabled": false,
         "DisplayId": ""
-    }
+    },
+    "m_InputSettings": {
+        "ShiftModifier": false,
+        "SendText": "",
+        "PosixKillSignal": 0,
+        "TargetProcess": {
+            "deviceId": "",
+            "name": "",
+            "processId": 0,
+            "exited": false
+        }
+    },
+    "m_AutoScroll": 0
 }
