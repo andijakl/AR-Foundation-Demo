@@ -32,6 +32,3 @@ Developed by Andreas Jakl, Professor at the St. Pölten University of Applied Sc
 
 * <https://www.fhstp.ac.at/>
 * <https://www.andreasjakl.com/>
-* <https://twitter.com/andijakl>
-
-The project is supported by [DIH-OST (Digital Innovation Hub)](https://dih-ost.at/product/alexa-skill-zur-unterstuetzung-von-online-schulungen/), ecoplus, FFG and the Federal Ministry Republic of Austria for Digital and Economic Affairs.
