@@ -26,15 +26,15 @@ public class ARPlaceTrackedImages : MonoBehaviour
 
     void OnEnable()
     {
-        _trackedImagesManager.trackedImagesChanged += OnTrackedImagesChanged;
+        _trackedImagesManager.trackablesChanged.AddListener(OnTrackedImagesChanged);
     }
 
     void OnDisable()
     {
-        _trackedImagesManager.trackedImagesChanged -= OnTrackedImagesChanged;
+        _trackedImagesManager.trackablesChanged.RemoveListener(OnTrackedImagesChanged);
     }
 
-    private void OnTrackedImagesChanged(ARTrackedImagesChangedEventArgs eventArgs)
+    private void OnTrackedImagesChanged(ARTrackablesChangedEventArgs<ARTrackedImage> eventArgs)
     {
         // Good reference: https://forum.unity.com/threads/arfoundation-2-image-tracking-with-many-ref-images-and-many-objects.680518/#post-4668326
         // https://github.com/Unity-Technologies/arfoundation-samples/issues/261#issuecomment-555618182
@@ -81,14 +81,14 @@ public class ARPlaceTrackedImages : MonoBehaviour
             // Note: this code does not delete the ARTrackedImage parent, which was created
             // by AR Foundation, is managed by it and should therefore also be deleted
             // by AR Foundation.
-            Destroy(_instantiatedPrefabs[trackedImage.referenceImage.name]);
+            Destroy(_instantiatedPrefabs[trackedImage.Value.referenceImage.name]);
             // Also remove the instance from our array
-            _instantiatedPrefabs.Remove(trackedImage.referenceImage.name);
+            _instantiatedPrefabs.Remove(trackedImage.Value.referenceImage.name);
 
             // Alternative: do not destroy the instance, just set it inactive
             //_instantiatedPrefabs[trackedImage.referenceImage.name].SetActive(false);
 
-            Log.text = $"REMOVED (guid: {trackedImage.referenceImage.guid}).";
+            Log.text = $"REMOVED (guid: {trackedImage.Value.referenceImage.guid}).";
         }
     }
 
