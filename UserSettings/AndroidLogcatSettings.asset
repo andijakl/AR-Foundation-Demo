@@ -3,7 +3,7 @@
     "m_SelectedProcess": {
         "deviceId": "38091FDJH00NZD",
         "name": "com.AndreasJakl.ArFoundationDemo",
-        "processId": 30168,
+        "processId": 26233,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -18,6 +18,18 @@
             "deviceId": "38091FDJH00NZD",
             "name": "com.AndreasJakl.ArFoundationDemo",
             "processId": 30168,
+            "exited": false
+        },
+        {
+            "deviceId": "38091FDJH00NZD",
+            "name": "com.AndreasJakl.ArFoundationDemo",
+            "processId": 22200,
+            "exited": false
+        },
+        {
+            "deviceId": "38091FDJH00NZD",
+            "name": "com.AndreasJakl.ArFoundationDemo",
+            "processId": 26233,
             "exited": false
         }
     ],
@@ -90,6 +102,17 @@
         "BitRateK": 20000,
         "DisplayIdEnabled": false,
         "DisplayId": ""
+    },
+    "m_ScreenCaptureSettings": {
+        "Mode": 0,
+        "m_LastSaveLocation": [
+            "C:\\Source\\GitHub\\AR-Foundation-Demo",
+            "C:\\Source\\GitHub\\AR-Foundation-Demo"
+        ]
+    },
+    "m_QueryLayoutSettings": {
+        "LastLayoutSaveLocation": "",
+        "LastScreenshotSaveLocation": ""
     },
     "m_InputSettings": {
         "ShiftModifier": false,
